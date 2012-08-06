@@ -191,11 +191,10 @@ class Engine(object):
         """ Run specified hooks if they exist """
         logging.debug('Running hook {0}'.format(hook_name))
         returns = []
-        try:
-            for hook in self.hooks.get(hook_name, []):
-                returns.append(hook(*args))
-        except AttributeError:
-            logging.info('Hook {0} not defined'.format(hook_name))
+        
+        for hook in self.hooks.get(hook_name, []):
+            returns.append(hook(*args))
+
         return returns
 
     def prepare_output(self):
